@@ -1,0 +1,24 @@
+/*这一题的意思是把2个数组合并后，插入到nums1的后面
+  从后面开始判断，依次从m+n位置开始插入*/
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        if(nums2.size() < 1 || nums1.size() <1)
+            return;
+        int k = m+n-1;
+        int p1 = m-1;
+        int p2 = n-1;
+        while(p1 >= 0 && p2 >= 0)
+        {
+           if(nums1[p1] < nums2[p2])
+               nums1[k--] = nums2[p2--];
+           else
+               nums1[k--] = nums1[p1--];
+        }
+        if(p1 <0 && p2 >=0)
+        {
+            while(p2 >= 0)
+                nums1[k--] = nums2[p2--];
+        }
+    }
+};
